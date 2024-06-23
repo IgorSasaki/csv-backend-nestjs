@@ -1,18 +1,19 @@
-version: '3.8'
-
+version: '3'
 services:
   app:
-    build: .
+    container_name: scalable-backend
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
-      - "3333:3333"
+      - '3333:3333'
     environment:
-      - NODE_ENV=production
+      - MONGO_URI=mongodb://mongo:27017/scalable-backend
     depends_on:
-      - redis
-    volumes:
-      - .:/app
+      - mongo
 
-  redis:
-    image: "redis:alpine"
+  mongo:
+    image: mongo:latest
+    container_name: mongo
     ports:
-      - "6379:6379"
+      - '27017:27017'
