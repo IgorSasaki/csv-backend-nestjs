@@ -1,11 +1,14 @@
 import { Module } from '@nestjs/common'
+import { MongooseModule } from '@nestjs/mongoose'
 
-import { AppController } from './app.controller'
-import { AppService } from './app.service'
+import { AuthModule } from './auth/auth.module'
+import { UserModule } from './users/user.module'
 
 @Module({
-  controllers: [AppController],
-  imports: [],
-  providers: [AppService]
+  imports: [
+    MongooseModule.forRoot('mongodb://localhost:27017/scalable-backend', {}),
+    AuthModule,
+    UserModule
+  ]
 })
 export class AppModule {}
