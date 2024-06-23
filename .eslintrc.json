@@ -24,6 +24,7 @@
   "rules": {
     "prettier/prettier": "error",
     "no-use-before-define": "off",
+    "no-useless-constructor": "off",
     "@typescript-eslint/no-use-before-define": "off",
     "@typescript-eslint/no-empty-interface": "off",
     "space-before-function-paren": "off",
