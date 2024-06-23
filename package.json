@@ -99,11 +99,8 @@
     }
   },
   "lint-staged": {
-    "**/*.{js,jsx,ts,tsx}": [
+    "**/*.{js,ts}": [
       "eslint --fix",
-      "prettier --config ./prettier.config.js --write"
-    ],
-    "**/*.{css,scss,md,html,json}": [
       "prettier --config ./prettier.config.js --write"
     ]
   },
