@@ -1,10 +1,11 @@
 version: '3'
 services:
   app:
-    container_name: scalable-backend
+    container_name: scalable-backend-2
     build:
       context: .
       dockerfile: Dockerfile
+    image: my-custom-backend:latest
     ports:
       - '3333:3333'
     environment:
@@ -22,6 +23,9 @@ services:
       - '27017:27017'
     volumes:
       - mongo-data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
 
   redis:
     image: redis:latest

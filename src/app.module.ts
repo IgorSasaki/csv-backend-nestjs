@@ -5,27 +5,25 @@ import { MongooseModule } from '@nestjs/mongoose';
 
 import { AuthModule } from './auth/auth.module';
 import { CsvModule } from './csv/csv.module';
-import { UserModule } from './users/user.module';
 import { WebSocketModule } from './websocket/websocket.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost:27017/scalable-backend', {}),
+    MongooseModule.forRoot(process.env.MONGO_URI),
     BullModule.forRoot({
       redis: {
-        host: 'localhost',
-        port: 6379,
+        host: process.env.REDIS_HOST,
+        port: parseInt(process.env.REDIS_PORT, 10),
       },
     }),
     RedisModule.forRoot({
       config: {
-        host: 'localhost',
-        port: 6379,
+        host: process.env.REDIS_HOST,
+        port: parseInt(process.env.REDIS_PORT, 10),
       },
     }),
-    AuthModule,
-    UserModule,
     CsvModule,
+    AuthModule,
     WebSocketModule,
   ],
 })
