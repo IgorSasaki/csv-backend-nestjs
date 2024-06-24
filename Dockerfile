@@ -1,16 +1,15 @@
-# Dockerfile
-FROM node:22.3
+FROM node:20
 
 WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm install
+RUN npm install --legacy-peer-deps
 
 COPY . .
 
 RUN npm run build
 
-EXPOSE 3000
+EXPOSE 3333
 
-CMD ["node", "dist/main"]
+CMD ["npm", "run", "start:prod"]
