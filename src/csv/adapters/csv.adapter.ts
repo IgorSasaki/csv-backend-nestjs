@@ -1,10 +1,10 @@
-import { v4 as uuidv4 } from 'uuid'
+import { v4 as uuidv4 } from 'uuid';
 
-import { ICsvData } from '../../common/interfaces/csv.interface'
+import { ICsvData } from '../../common/interfaces/csv.interface';
 
 export class CsvAdapter {
   static adapt(data: any, userId: string): ICsvData {
-    const dateNow = new Date().toISOString()
+    const dateNow = new Date().toISOString();
 
     return {
       csvRowId: uuidv4(),
@@ -14,8 +14,8 @@ export class CsvAdapter {
       age: this.parseNumber(data.Idade),
       monetaryValue: this.parseMonetaryValue(data['Valor Monetario'] ?? '0'),
       createdAt: dateNow,
-      updatedAt: dateNow
-    }
+      updatedAt: dateNow,
+    };
   }
 
   static rawAdapt(data: ICsvData | any) {
@@ -25,21 +25,21 @@ export class CsvAdapter {
       Idade: data.age,
       'Valor Monetario': data.monetaryValue.toLocaleString('pt-br', {
         style: 'currency',
-        currency: 'BRL'
-      })
-    }
+        currency: 'BRL',
+      }),
+    };
   }
 
   private static parseNumber(value: string): number {
-    const parsedValue = parseFloat(value.replace(/[^\d.-]/g, ''))
-    return isNaN(parsedValue) ? 0 : parsedValue
+    const parsedValue = parseFloat(value.replace(/[^\d.-]/g, ''));
+    return isNaN(parsedValue) ? 0 : parsedValue;
   }
 
   private static parseMonetaryValue(value: string): number {
     const parsedValue = parseFloat(
-      value.replace(/[R$\s.]/g, '').replace(',', '.')
-    )
+      value.replace(/[R$\s.]/g, '').replace(',', '.'),
+    );
 
-    return isNaN(parsedValue) ? 0 : parsedValue
+    return isNaN(parsedValue) ? 0 : parsedValue;
   }
 }

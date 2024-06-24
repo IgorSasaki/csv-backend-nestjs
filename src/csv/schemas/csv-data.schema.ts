@@ -1,31 +1,31 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
-import { Document } from 'mongoose'
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
 
 @Schema()
 export class CsvData extends Document {
   @Prop({ required: true })
-  userId: string
+  userId: string;
 
   @Prop()
-  csvRowId: string
+  csvRowId: string;
 
   @Prop()
-  email: string
+  email: string;
 
   @Prop()
-  name: string
+  name: string;
 
   @Prop()
-  idade: number
+  idade: number;
 
   @Prop()
-  monetaryValue: number
+  monetaryValue: number;
 
   @Prop({ required: true })
-  createdAt: string
+  createdAt: string;
 
   @Prop({ required: true })
-  updatedAt: string
+  updatedAt: string;
 }
 
-export const CsvDataSchema = SchemaFactory.createForClass(CsvData)
+export const CsvDataSchema = SchemaFactory.createForClass(CsvData);
