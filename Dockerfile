@@ -2,14 +2,14 @@ FROM node:22
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY package.json yarn.lock ./
 
-RUN npm install --legacy-peer-deps
+RUN yarn install
 
 COPY . .
 
-RUN npm run build
+RUN yarn build
 
 EXPOSE 3333
 
-CMD ["npm", "run", "start:prod"]
+CMD ["yarn", "start:prod"]
