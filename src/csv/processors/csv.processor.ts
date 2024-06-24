@@ -1,7 +1,7 @@
-import { Process, Processor } from '@nestjs/bull'
-import { Job } from 'bull'
+import { Process, Processor } from '@nestjs/bull';
+import { Job } from 'bull';
 
-import { WebSocketGatewayClass } from '../../websocket/websocket.gateway'
+import { WebSocketGatewayClass } from '../../websocket/websocket.gateway';
 
 @Processor('csv')
 export class CsvProcessor {
@@ -9,8 +9,8 @@ export class CsvProcessor {
 
   @Process('processCsv')
   async handleProcessCsv(job: Job) {
-    const { filePath } = job.data
+    const { filePath } = job.data;
 
-    this.wsGateway.emitCsvProcessed({ status: 'completed', filePath })
+    this.wsGateway.emitCsvProcessed({ status: 'completed', filePath });
   }
 }

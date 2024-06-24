@@ -1,6 +1,6 @@
-import { InjectQueue } from '@nestjs/bull'
-import { Injectable } from '@nestjs/common'
-import { Queue } from 'bull'
+import { InjectQueue } from '@nestjs/bull';
+import { Injectable } from '@nestjs/common';
+import { Queue } from 'bull';
 
 @Injectable()
 export class CsvService {
@@ -8,7 +8,7 @@ export class CsvService {
 
   public async processCsv(file: Express.Multer.File) {
     await this.csvQueue.add('processCsv', {
-      filePath: file.path
-    })
+      filePath: file.path,
+    });
   }
 }

@@ -2,27 +2,27 @@ import {
   OnGatewayConnection,
   OnGatewayDisconnect,
   WebSocketGateway,
-  WebSocketServer
-} from '@nestjs/websockets'
-import { Server, Socket } from 'socket.io'
+  WebSocketServer,
+} from '@nestjs/websockets';
+import { Server, Socket } from 'socket.io';
 
 @WebSocketGateway()
 export class WebSocketGatewayClass
   implements OnGatewayConnection, OnGatewayDisconnect
 {
   @WebSocketServer()
-  server: Server
+  server: Server;
 
   handleConnection(client: Socket) {
-    console.log('Client connected:', client.id)
+    console.log('Client connected:', client.id);
   }
 
   handleDisconnect(client: Socket) {
-    console.log('Client disconnected:', client.id)
+    console.log('Client disconnected:', client.id);
   }
 
   emitCsvProcessed(data: any) {
-    console.log('Emitting csvProcessed event:', data)
-    this.server.emit('csvProcessed', data)
+    console.log('Emitting csvProcessed event:', data);
+    this.server.emit('csvProcessed', data);
   }
 }
